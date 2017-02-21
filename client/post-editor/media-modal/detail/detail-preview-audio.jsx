@@ -2,6 +2,7 @@
  * External dependencies
  */
 var React = require( 'react' );
+import classNames from 'classnames';
 
 /**
  * Internal dependencies
@@ -12,15 +13,18 @@ module.exports = React.createClass( {
 	displayName: 'EditorMediaModalDetailPreviewAudio',
 
 	propTypes: {
-		item: React.PropTypes.object.isRequired
+		className: React.PropTypes.string,
+		item: React.PropTypes.object.isRequired,
 	},
 
 	render: function() {
+		const classes = classNames( this.props.className, 'is-audio' );
+
 		return (
 			<audio
 				src={ MediaUtils.url( this.props.item ) }
 				controls
-				className="editor-media-modal-detail__preview is-audio" />
+				className={ classes } />
 		);
 	}
 } );
