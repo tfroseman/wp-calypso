@@ -59,9 +59,18 @@ const ThemesSelection = React.createClass( {
 		};
 	},
 
+	getInitialState() {
+		return {
+			placeholderCount: this.props.placeholderCount,
+		};
+	},
+
 	componentWillReceiveProps( nextProps ) {
 		if ( ! isEqual( omit( this.props.query, PAGINATION_QUERY_KEYS ), omit( nextProps.query, PAGINATION_QUERY_KEYS ) ) ) {
 			this.props.resetPage();
+		}
+		if ( nextProps.themesCount ) {
+			this.setState( { placeholderCount: nextProps.themesCount } );
 		}
 	},
 
@@ -160,7 +169,7 @@ const ThemesSelection = React.createClass( {
 					isPurchased={ this.props.isThemePurchased }
 					isInstalling={ this.props.isInstallingTheme }
 					loading={ this.props.isRequesting }
-					placeholderCount={ this.props.placeholderCount } />
+					placeholderCount={ this.state.placeholderCount } />
 			</div>
 		);
 	},
