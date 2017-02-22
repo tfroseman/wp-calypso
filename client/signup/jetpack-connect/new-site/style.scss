@@ -14,7 +14,7 @@ $green-jetpack:     #8cc258; // RGB 140, 194, 88
 }
 
 .jetpack-new-site__header {
-	margin-bottom: 2em;
+	margin-bottom: 3em;
 
 	@include breakpoint( "<660px" ) {
 		margin: 0 2em 2em;
