@@ -44,7 +44,7 @@ const JetpackNewSite = React.createClass( {
 				<div className="jetpack-new-site__header">
 					<h2 className="jetpack-new-site__header-title">{ this.translate( 'Add a New Site' ) }</h2>
 					<div className="jetpack-new-site__header-text">{ this.translate(
-						'Create a new shiny site on WordPress.com — you’ll be able to pick a visual theme and customize it to your liking. Optionally, you can connect your existing self-hosted WordPress site through Jetpack to benefit from dozens of WordPress.com exclusive features.'
+						'Create a new site on WordPress.com or add your existing self-hosted WordPress site with Jetpack.'
 					) } </div>
 				</div>
 				<div className="jetpack-new-site__content">
@@ -55,7 +55,7 @@ const JetpackNewSite = React.createClass( {
 						</h3>
 						<div className="jetpack-new-site__card-description">
 						<p>
-							{ this.translate( 'Start telling your story in just 2 minutes. Pick a visual theme and a domain — we’ll take care of the entire setup. If you need additional help we’ve got you covered with 24-7 hour support.' ) }
+							{ this.translate( 'Start telling your story in just 2 minutes. Pick a visual theme and a domain — we’ll take care of the entire setup. If you need help we’ve got you covered with 24/7 support.' ) }
 						</p>
 						</div>
 						<div className="jetpack-new-site__button-holder">
