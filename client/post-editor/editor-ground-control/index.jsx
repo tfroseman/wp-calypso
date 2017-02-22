@@ -370,13 +370,6 @@ export default React.createClass( {
 							site={ this.props.site }>
 						</EditPostStatus>
 				}
-				<div className="editor-ground-control__toggle-sidebar">
-					<Button
-						borderless
-						onClick={ this.props.toggleSidebar }>
-						<Gridicon icon="cog" /> { this.translate( 'Document' ) }
-					</Button>
-				</div>
 				<div className="editor-ground-control__action-buttons">
 					<Button
 						borderless
@@ -386,6 +379,13 @@ export default React.createClass( {
 						tabIndex={ 4 }
 					>
 						<Gridicon icon="visible" /> { this.getPreviewLabel() }
+					</Button>
+					<Button
+						borderless
+						className="editor-ground-control__toggle-sidebar"
+						onClick={ this.props.toggleSidebar }
+					>
+						<Gridicon icon="cog" /> { this.translate( 'Document' ) }
 					</Button>
 					<div className="editor-ground-control__publish-combo">
 						<EditorPublishButton
