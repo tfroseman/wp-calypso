@@ -1,11 +1,11 @@
 // Primary Accent (Blues)
-$blue-wordpress:         #0087be;
-$blue-light:             #78dcfa;
-$blue-medium:            #00aadc;
-$blue-dark:              #005082;
+$blue-wordpress:         #067BBF;
+$blue-light:             lighten($blue-wordpress, 35%);
+$blue-medium:            lighten($blue-wordpress, 11%);
+$blue-dark:              darken($blue-wordpress, 12%);
 
 // Grays
-$gray:                   #8e9ead;
+$gray:                   #91A1AF;
 $gray-light:             lighten( $gray, 33% ); //#f3f6f8
 $gray-dark:              darken( $gray, 38% ); //#2e4453
 
