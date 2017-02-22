@@ -61,6 +61,25 @@ const DomainsStep = React.createClass( {
 		return { products: productsList.get() };
 	},
 
+	componentWillMount: function() {
+		const { stepName, queryObject } = this.props;
+
+		// skip this step if domain name is given in the url via the `domain` query parameter
+		if ( queryObject && queryObject.domain ) {
+			SignupActions.saveSignupStep( {
+				stepName,
+				suggestion: {
+					domain_name: queryObject.domain,
+					product_slug: 'domain_reg'
+				}
+			} );
+
+			defer( () => {
+				this.submitWithDomain();
+			} );
+		}
+	},
+
 	componentDidMount: function() {
 		productsList.on( 'change', this.refreshState );
 	},
