@@ -327,8 +327,8 @@ export default React.createClass( {
 		return (
 			<Card className="editor-ground-control">
 				<Button
-					compact borderless
-					className="editor-ground-control__close"
+					borderless
+					className="editor-ground-control__back"
 					href={ '' }
 					onClick={ page.back.bind( page, this.props.allPostsUrl ) }
 					aria-label={ this.translate( 'Go back' ) }
