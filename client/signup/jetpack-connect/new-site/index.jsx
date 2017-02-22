@@ -76,13 +76,13 @@ const JetpackNewSite = React.createClass( {
 					</Card>
 					<Card className="jetpack-new-site__mobile">
 						<div className="jetpack-new-site__mobile-wpcom-site">
-							<Button className="button is-primary" href={ this.getNewWpcomSiteUrl() }>{ this.translate( 'Create a New WordPress.com Site Now' ) }</Button>
+							<Button className="button is-primary" href={ this.getNewWpcomSiteUrl() }>{ this.translate( 'Create a New WordPress.com Site' ) }</Button>
 						</div>
 						<div className="jetpack-new-site__divider">
 							<span>{ this.translate( 'or' ) }</span>
 						</div>
 						<div className="jetpack-new-site__mobile-jetpack-site">
-							<p>{ this.translate( 'Add an existing WordPress site with Jetpack by entering the address:' ) }</p>
+							<p>{ this.translate( 'Add an existing WordPress site with Jetpack:' ) }</p>
 							<SiteURLInput ref="siteUrlInputRef"
 								onTosClick={ this.handleOnClickTos }
 								onClick={ this.onURLEnter } />
