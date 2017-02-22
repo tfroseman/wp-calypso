@@ -179,6 +179,7 @@ class VideoEditor extends Component {
 							{ translate( 'Select a frame to use as the thumbnail image or upload your own.' ) }
 						</span>
 						<VideoEditorButtons
+							isPosterUpdating={ isPosterUpdating }
 							isVideoLoaded={ isVideoLoaded }
 							onCancel={ onCancel }
 							onSelectFrame={ this.handleSelectFrame }
