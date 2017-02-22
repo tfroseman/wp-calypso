@@ -19,8 +19,24 @@ import EditorMediaModalDetailPreviewAudio from './detail-preview-audio';
 import EditorMediaModalDetailPreviewDocument from './detail-preview-document';
 import Button from 'components/button';
 import { userCan, isJetpack } from 'lib/site/utils';
+import versionCompare from 'lib/version-compare';
 import MediaUtils, { isItemBeingUploaded } from 'lib/media/utils';
 import config from 'config';
+
+/**
+ * This function returns true if the site is a Jetpack site
+ * and its version is greater than the minimum version
+ * to be able to edit media files.
+ *
+ * @param  {object} site - current site
+ * @return {boolean} `true` is it's a valid Jetpack site
+ */
+const allowForJetpackSite = site => (
+	site &&
+	isJetpack( site ) &&
+	site.options &&
+	versionCompare( site.options.jetpack_version, '4.7-alpha', '>=' )
+);
 
 class EditorMediaModalDetailItem extends Component {
 	static propTypes = {
@@ -113,8 +129,8 @@ class EditorMediaModalDetailItem extends Component {
 		if (
 			site.is_private ||
 			! config.isEnabled( 'post-editor/image-editor' ) ||
-			isJetpack( site ) ||
-			! item
+			! item ||
+			! allowForJetpackSite( site )
 		) {
 			return null;
 		}
