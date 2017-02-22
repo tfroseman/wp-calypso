@@ -41,7 +41,7 @@ function createCart( callback, dependencies, data ) {
 			themeItem
 		};
 
-		SignupCart.addToCart( cartKey, [ domainItem ], error => callback( error, providedDependencies ) );
+		SignupCart.createCart( cartKey, [ domainItem ], error => callback( error, providedDependencies ) );
 	} else {
 		createSiteWithCart( callback, dependencies, data );
 	}
