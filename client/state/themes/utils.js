@@ -253,6 +253,12 @@ export function isThemeMatchingQuery( query, theme ) {
 						some( terms, { slug: f } )
 					) )
 				) );
+
+			case 'filterWpcomThemes':
+				if ( ! value ) {
+					return true;
+				}
+				return ! isThemeFromWpcom( theme.id );
 		}
 
 		return true;
