@@ -286,3 +286,45 @@ $autobar-height: 20px;
 		margin-right: auto;
 	}
 }
+
+.masterbar__recent-drafts.popover {
+	width: 280px;
+
+	.popover__inner {
+		overflow-y: auto;
+		text-align: left;
+		max-height: 70vh;
+	}
+}
+
+.masterbar__publish {
+	display: flex;
+}
+
+.masterbar__toggle-drafts.button.is-borderless {
+	background: white;
+	color: $gray-dark;
+	height: 36px;
+	margin: 5px 8px 5px -7px;
+	padding: 0 8px;
+	border-radius: 0 3px 3px 0;
+	opacity: 0.65;
+
+	.count {
+		border: none;
+		margin: 0;
+		font-size: 13px;
+		font-weight: 400;
+		color: $gray-dark;
+		padding: 0 4px;
+		line-height: 30px;
+	}
+}
+
+.masterbar__see-all-drafts {
+	margin: 4px 0;
+
+	.count {
+		margin-left: 8px;
+	}
+}
