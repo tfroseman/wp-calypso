@@ -113,19 +113,31 @@ class EditorMediaModalDetailItem extends Component {
 		);
 	}
 
-	renderImageEditorButtons( item, classname = 'is-desktop' ) {
+	renderMediaEditorButtons( item, classname = 'is-desktop' ) {
 		const { site } = this.props;
 
-		if (
-			site.is_private ||
-			! config.isEnabled( 'post-editor/image-editor' ) ||
-			isJetpack( site ) ||
-			! item
-		) {
+		if ( site.is_private || ! item ) {
 			return null;
 		}
 
+		const mimePrefix = MediaUtils.getMimePrefix( item );
 		const classes = classNames( 'editor-media-modal-detail__edition-bar', classname );
+
+		if ( 'video' === mimePrefix ) {
+			if ( ! config.isEnabled( 'post-editor/video-editor' ) || ! site.options.videopress_enabled ) {
+				return null;
+			}
+
+			return (
+				<div className={ classes }>
+					{ this.renderEditButton() }
+				</div>
+			);
+		}
+
+		if ( ! config.isEnabled( 'post-editor/image-editor' ) || isJetpack( site ) ) {
+			return null;
+		}
 
 		return (
 			<div className={ classes }>
@@ -236,13 +248,13 @@ class EditorMediaModalDetailItem extends Component {
 
 					<div className="editor-media-modal-detail__preview-wrapper">
 						{ this.renderItem() }
-						{ this.renderImageEditorButtons( item ) }
+						{ this.renderMediaEditorButtons( item ) }
 						{ this.renderPreviousItemButton() }
 						{ this.renderNextItemButton() }
 					</div>
 
 					<div className="editor-media-modal-detail__sidebar">
-						{ this.renderImageEditorButtons( item, 'is-mobile' ) }
+						{ this.renderMediaEditorButtons( item, 'is-mobile' ) }
 						{ this.renderFields() }
 						<EditorMediaModalDetailFileInfo
 							item={ item } />
