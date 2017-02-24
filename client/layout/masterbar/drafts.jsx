@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { getSelectedSite } from 'state/ui/selectors';
 import Popover from 'components/popover';
 import Count from 'components/count';
-import { getAllPostCount } from 'state/posts/counts/selectors';
+import { getMyPostCounts } from 'state/posts/counts/selectors';
 import { getSelectedSiteId } from 'state/ui/selectors';
 import {
 	getSitePostsForQueryIgnoringPage,
@@ -124,11 +124,13 @@ export default connect( ( state ) => {
 		author: ( site && ! site.single_user_site ) ? userId : null
 	};
 
+	const myPostCounts = getMyPostCounts( state, siteId, 'post' );
+
 	return {
 		drafts: getSitePostsForQueryIgnoringPage( state, siteId, draftsQuery ),
 		loadingDrafts: isRequestingSitePostsForQuery( state, siteId, draftsQuery ),
 		draftsQuery: draftsQuery,
-		draftCount: getAllPostCount( state, siteId, 'post', 'draft' ),
+		draftCount: myPostCounts && myPostCounts.draft,
 		selectedSite: site,
 	};
 } )( MasterbarDrafts );
