@@ -322,6 +322,8 @@ $autobar-height: 20px;
 }
 
 .masterbar__see-all-drafts {
+	display: block;
+	text-align: center;
 	margin: 4px 0;
 
 	.count {
