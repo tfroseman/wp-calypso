@@ -29,8 +29,7 @@ const MasterbarItemNew = React.createClass( {
 
 	getInitialState() {
 		return {
-			isShowingPopover: false,
-			showDrafts: false
+			isShowingPopover: false
 		};
 	},
 
@@ -65,18 +64,6 @@ const MasterbarItemNew = React.createClass( {
 		}
 
 		return 'bottom left';
-	},
-
-	toggleDrafts( event ) {
-		event.stopPropagation();
-		event.preventDefault();
-		this.setState( {
-			showDrafts: ! this.state.showDrafts
-		} );
-	},
-
-	closeDrafts() {
-		this.setState( { showDrafts: false } );
 	},
 
 	render() {
