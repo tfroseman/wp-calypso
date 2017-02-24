@@ -33,7 +33,9 @@ export default React.createClass( {
 			isSelected: false,
 
 			homeLink: false,
-			showHomeIcon: true // if homeLink is enabled
+			// if homeLink is enabled
+			showHomeIcon: true,
+			compact: false
 		};
 	},
 
@@ -48,7 +50,8 @@ export default React.createClass( {
 		isHighlighted: React.PropTypes.bool,
 		site: React.PropTypes.object,
 		homeLink: React.PropTypes.bool,
-		showHomeIcon: React.PropTypes.bool
+		showHomeIcon: React.PropTypes.bool,
+		compact: React.PropTypes.bool
 	},
 
 	onSelect( event ) {
@@ -78,8 +81,11 @@ export default React.createClass( {
 			'is-private': site.is_private,
 			'is-redirect': site.options && site.options.is_redirect,
 			'is-selected': this.props.isSelected,
-			'is-highlighted': this.props.isHighlighted
+			'is-highlighted': this.props.isHighlighted,
+			'is-compact': this.props.compact,
 		} );
+
+		const iconSize = this.props.compact && 24;
 
 		return (
 			<div className={ siteClass }>
@@ -103,7 +109,7 @@ export default React.createClass( {
 						} )
 					}
 				>
-					<SiteIcon site={ site } />
+					<SiteIcon site={ site } size={ iconSize } />
 					<div className="site__info">
 						<div className="site__title">
 							{ /* eslint-disable wpcalypso/jsx-gridicon-size */ }

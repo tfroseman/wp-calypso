@@ -35,6 +35,20 @@
 		}
 
 	}
+
+	&.is-compact {
+		.site__content {
+			padding: 0 16px;
+		}
+
+		.site__domain {
+			display: none;
+		}
+
+		.site__title {
+			line-height: 46px;
+		}
+	}
 }
 
 // Wraps the anchor element
@@ -112,6 +126,11 @@
 	.gridicon {
 		margin-top: 5px;
 		vertical-align: middle;
+	}
+
+	.site.is-compact & {
+		width: 24px;
+		height: 24px;
 	}
 
 	&:hover {
