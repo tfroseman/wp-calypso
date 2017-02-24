@@ -294,11 +294,20 @@ $autobar-height: 20px;
 		overflow-y: auto;
 		text-align: left;
 		max-height: 70vh;
+
+		.async-load {
+			margin: 16px;
+			width: auto;
+		}
 	}
 }
 
 .masterbar__publish {
 	display: flex;
+
+	.async-load {
+		display: none;
+	}
 }
 
 .masterbar__toggle-drafts.button.is-borderless {
