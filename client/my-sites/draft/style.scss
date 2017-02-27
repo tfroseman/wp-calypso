@@ -2,9 +2,11 @@
 	padding: 16px;
 	text-align: left;
 
-	&:hover {
-		.draft__excerpt {
-			display: block;
+	@include breakpoint( ">660px" ) {
+		&:hover {
+			.draft__excerpt {
+				display: block;
+			}
 		}
 	}
 }
