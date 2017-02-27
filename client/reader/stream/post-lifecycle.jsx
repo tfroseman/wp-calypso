@@ -108,7 +108,7 @@ export default class PostLifecycle extends React.PureComponent {
 		} else if ( postKey.isRecommendation ) {
 			return <EmptySearchRecommendedPosts post={ post } site={ postKey } />;
 		} else if ( postKey.isGap ) {
-			return <ListGap postKey={ postKey } store={ this.props.store } selected={ this.props.isSelected } />;
+			return <ListGap gap={ postKey } store={ this.props.store } selected={ this.props.isSelected } />;
 		} else if ( postKey.isBlocked ) {
 			return <PostBlocked post={ post } />;
 		} else if ( isXPost( post ) ) {
