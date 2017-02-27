@@ -7,7 +7,7 @@ import tinymce from 'tinymce/tinymce';
 /**
  * Internal dependencies
  */
-import { recordTracksEvent } from 'state/analytics/actions';
+import { recordTracksEvent, withAnalytics } from 'state/analytics/actions';
 import { pasteEvent } from 'state/ui/editor/actions';
 import { SOURCE_UNKNOWN, SOURCE_GOOGLE_DOCS } from './sources';
 
@@ -38,13 +38,14 @@ function trackPaste( editor ) {
 		const typesAsArray = Array.from( types );
 		const source = getSource( typesAsArray );
 
-		store.dispatch( pasteEvent( source ) );
-
-		store.dispatch( recordTracksEvent( 'calypso_editor_content_paste', {
-			mode,
-			types: typesAsArray.join( ', ' ),
-			source
-		} ) );
+		store.dispatch( withAnalytics(
+			recordTracksEvent( 'calypso_editor_content_paste', {
+				mode,
+				types: typesAsArray.join( ', ' ),
+				source
+			} ),
+			pasteEvent( source )
+		) );
 	};
 
 	const onPasteFromTinyMCEEditor = event => event.clipboardData && recordPasteEvent( 'visual-editor', event.clipboardData.types );
