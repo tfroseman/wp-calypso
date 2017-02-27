@@ -13,9 +13,10 @@ var FeedStreamStoreActions = require( 'lib/feed-stream-store/actions' ),
 var Gap = React.createClass( {
 
 	propTypes: {
-		gap: React.PropTypes.object.isRequired,
+		gap: React.PropTypes.object,
+		postKey: React.PropTypes.object,
 		store: React.PropTypes.object.isRequired,
-		selected: React.PropTypes.bool
+		selected: React.PropTypes.bool,
 	},
 
 	getInitialState: function() {
@@ -37,7 +38,7 @@ var Gap = React.createClass( {
 	},
 
 	handleClick: function() {
-		FeedStreamStoreActions.fillGap( this.props.store.id, this.props.gap );
+		FeedStreamStoreActions.fillGap( this.props.store.id, this.props.gap || this.props.postKey );
 		this.setState( { isFilling: true } );
 		stats.recordAction( 'fill_gap' );
 		stats.recordGaEvent( 'Clicked Fill Gap' );
