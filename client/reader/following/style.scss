@@ -16,6 +16,10 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 
+	+ .following__search {
+		margin-top: 16px;
+	}
+
 	@media ( max-width: 900px ) {
 		background-position: 75% 0;
 	}
@@ -48,6 +52,11 @@
 	margin-top: 36px;
 	margin-bottom: 18px;
 	max-width: 50%;
+	text-shadow: 1px 1px 1px rgba( 0, 0, 0, 0.1 );
+
+	a {
+		text-shadow: none;
+	}
 
 	a:hover {
 		color: $blue-wordpress;
