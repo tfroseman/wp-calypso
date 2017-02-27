@@ -36,7 +36,7 @@ export const GDocsIntegrationTour = makeTour(
 				<LinkQuit
 					primary
 					target="_blank"
-					href="https://wordpress.com">
+					href="https://apps.wordpress.com/google-docs/">
 					{ translate( 'Learn more' ) }
 				</LinkQuit>
 				<Quit>{ translate( 'No thanks' ) }</Quit>
