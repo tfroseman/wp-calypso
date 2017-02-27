@@ -17,12 +17,13 @@ const DIRECTLY_ASSETS_BASE_URL = 'https://www.directly.com';
 let initializationPromise;
 
 function executeDirectlyCommand( ...args ) {
-	// Havoc is wreaked if you try to execute Directly commands before initialization
-	// has completed, so let's wait until it's started...
+	// Havoc is wreaked if you try to execute Directly commands before initialization.
+	// If initialization hasn't started, ignore the command.
 	if ( typeof initializationPromise === 'undefined' ) {
 		return;
 	}
-	// ... and then ensure that initialization has completed before executing
+	// If initialization has started, add the command to the promise chain to execute
+	// as soon as initialization has finished.
 	return initializationPromise.then( () => {
 		window.DirectlyRTM( ...args );
 	} );
