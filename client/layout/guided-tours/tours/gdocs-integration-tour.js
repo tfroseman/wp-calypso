@@ -23,7 +23,7 @@ import {
 export const GDocsIntegrationTour = makeTour(
 	<Tour
 		name="gdocsIntegrationTour"
-		version="20170124"
+		version="20170227"
 		path="/post"
 		when={ and(
 			isEnabled( 'guided-tours/gdocs-integration-tour' ),
@@ -31,7 +31,7 @@ export const GDocsIntegrationTour = makeTour(
 		) }
 	>
 		<Step name="init" placement="right">
-			<p> { translate( 'Are you interested in posting drafts directly from Google Docs?' ) }</p>
+			<p>{ translate( 'Are you interested in posting drafts directly from Google Docs?' ) }</p>
 			<ButtonRow>
 				<LinkQuit
 					primary
