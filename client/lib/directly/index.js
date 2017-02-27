@@ -16,6 +16,16 @@ const DIRECTLY_RTM_SCRIPT_URL = 'http://widgets.wp.com/directly/embed.js';
 const DIRECTLY_ASSETS_BASE_URL = 'https://www.directly.com';
 let initializationPromise;
 
+function insertDirectlyDOM() {
+	// Directly gathers the base URL for its assets by inspecting the src attribute
+	// of a DOM element with id="directlyRTMScript". Since we're not using the standard
+	// integration, we need to fake it by adding a dummy DOM object with those attributes.
+	const d = document.createElement( 'div' );
+	d.id = 'directlyRTMScript';
+	d.src = DIRECTLY_ASSETS_BASE_URL;
+	document.body.appendChild( d );
+}
+
 function executeDirectlyCommand( ...args ) {
 	// Havoc is wreaked if you try to execute Directly commands before initialization.
 	// If initialization hasn't started, ignore the command.
@@ -37,16 +47,10 @@ export function initialize( directlyConfig = {} ) {
 	window.DirectlyRTM = window.DirectlyRTM || function() {
 		( window.DirectlyRTM.cq = window.DirectlyRTM.cq || [] ).push( arguments );
 	};
-	// Before loading the script, we need to enqueue the config details
+	// Before loading the script, we need to enqueue the config details...
 	window.DirectlyRTM( 'config', { ...DEFAULT_RTM_WIDGET_OPTIONS, ...directlyConfig } );
-
-	// Directly gathers the base URL for its assets by inspecting the src attribute
-	// of a DOM element with id="directlyRTMScript". Since we're not using the standard
-	// integration, we need to fake it by adding a dummy DOM object with those attributes.
-	const d = document.createElement( 'div' );
-	d.id = 'directlyRTMScript';
-	d.src = DIRECTLY_ASSETS_BASE_URL;
-	document.body.appendChild( d );
+	// ... and prepare the DOM for Directly
+	insertDirectlyDOM();
 
 	initializationPromise = new Promise( ( resolve, reject ) => {
 		loadScript( DIRECTLY_RTM_SCRIPT_URL, function( error ) {
