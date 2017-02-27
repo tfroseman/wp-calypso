@@ -349,30 +349,27 @@ module.exports = function() {
 	app.get( '/theme', ( req, res ) => res.redirect( '/design' ) );
 
 	sections
-		.forEach( section => {
-			if ( section.envId && section.envId.indexOf( config( 'env_id' ) ) === -1 ) {
-				return;
-			}
+	.filter( section => ! section.envId || section.envId.indexOf( config( 'env_id' ) ) > -1 )
+	.forEach( section => {
+		section.paths.forEach( path => {
+			const pathRegex = utils.pathToRegExp( path );
 
-			section.paths.forEach( path => {
-				const pathRegex = utils.pathToRegExp( path );
-
-				app.get( pathRegex, function( req, res, next ) {
-					if ( config.isEnabled( 'code-splitting' ) ) {
-						req.context = Object.assign( {}, req.context, { chunk: section.name } );
-					}
-					next();
-				} );
-
-				if ( ! section.isomorphic ) {
-					app.get( pathRegex, section.enableLoggedOut ? setUpRoute : setUpLoggedInRoute, serverRender );
+			app.get( pathRegex, function( req, res, next ) {
+				if ( config.isEnabled( 'code-splitting' ) ) {
+					req.context = Object.assign( {}, req.context, { chunk: section.name } );
 				}
+				next();
 			} );
 
-			if ( section.isomorphic ) {
-				sectionsModule.require( section.module )( serverRouter( app, setUpRoute, section ) );
+			if ( ! section.isomorphic ) {
+				app.get( pathRegex, section.enableLoggedOut ? setUpRoute : setUpLoggedInRoute, serverRender );
 			}
 		} );
+
+		if ( section.isomorphic ) {
+			sectionsModule.require( section.module )( serverRouter( app, setUpRoute, section ) );
+		}
+	} );
 
 	app.get( '/browsehappy', setUpRoute, function( req, res ) {
 		const wpcomRe = /^https?:\/\/[A-z0-9_-]+\.wordpress\.com$/;
