@@ -114,9 +114,7 @@ class EditorMediaModalDetailItem extends Component {
 	}
 
 	renderMediaEditorButtons( item, classname = 'is-desktop' ) {
-		const { site } = this.props;
-
-		if ( site.is_private || ! item ) {
+		if ( ! item ) {
 			return null;
 		}
 
@@ -124,24 +122,48 @@ class EditorMediaModalDetailItem extends Component {
 		const classes = classNames( 'editor-media-modal-detail__edition-bar', classname );
 
 		if ( 'video' === mimePrefix ) {
-			if ( ! config.isEnabled( 'post-editor/video-editor' ) || ! site.options.videopress_enabled ) {
-				return null;
-			}
-
-			return (
-				<div className={ classes }>
-					{ this.renderEditButton() }
-				</div>
-			);
+			return this.renderVideoEditorButtons( item, classes );
 		}
 
-		if ( ! config.isEnabled( 'post-editor/image-editor' ) || isJetpack( site ) ) {
+		return this.renderImageEditorButtons( classes, classname );
+	}
+
+	renderImageEditorButtons( classes, classname ) {
+		const { site } = this.props;
+
+		if (
+			site.is_private ||
+			! config.isEnabled( 'post-editor/image-editor' ) ||
+			isJetpack( site )
+		) {
 			return null;
 		}
 
 		return (
 			<div className={ classes }>
 				{ this.renderRestoreButton( classname ) }
+				{ this.renderEditButton() }
+			</div>
+		);
+	}
+
+	renderVideoEditorButtons( item, classes ) {
+		const { site } = this.props;
+
+		if ( ! config.isEnabled( 'post-editor/video-editor' ) ) {
+			return null;
+		}
+
+		if ( isJetpack( site ) ) {
+			if ( ! MediaUtils.isVideoPressItem( item ) ) {
+				return null;
+			}
+		} else if ( ! site.options.videopress_enabled ) {
+			return null;
+		}
+
+		return (
+			<div className={ classes }>
 				{ this.renderEditButton() }
 			</div>
 		);
