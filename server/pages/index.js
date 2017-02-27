@@ -37,7 +37,7 @@ const staticFiles = [
 	{ path: 'vendor.js' }
 ];
 
-let sections = sectionsModule.get();
+const sections = sectionsModule.get();
 
 /**
  * Generates a hash of a files contents to be used as a version parameter on asset requests.
